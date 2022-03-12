@@ -16,5 +16,6 @@ The CSV file needs a small manual modification:
 
 1. remove the comment on the first line
 2. remove the quotes from the column intestation on the second line
-   <br>
-   After placing the CSV file in the same directory of the executable you'll get a .txt file containing the output.
+   
+<br>
+After placing the CSV file in the same directory of the executable you'll get a .txt file containing the output.

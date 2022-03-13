@@ -1,4 +1,4 @@
-module owsky.com/m/v2
+module github.com/owsky/game-libraries-crosschecker
 
 go 1.17
 

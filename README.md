@@ -9,13 +9,13 @@ Please do keep in mind that this is my first Go project, I'll try to fix whateve
 ## Usage
 
 I'll provide a compiled version as soon as I'm satified with the code, for the time being you can just build it yourself by launching:<br>
-`go build .\src\`
+`go build .`
 For whatever reason Windows Security doesn't really like Go executables and likes to flag them as viruses, [read this](https://go.dev/doc/faq#virus) for more information<br>
 
 The CSV file needs a small manual modification:
 
 1. remove the comment on the first line
 2. remove the quotes from the column intestation on the second line
-   
+
 <br>
 After placing the CSV file in the same directory of the executable you'll get a .txt file containing the output.

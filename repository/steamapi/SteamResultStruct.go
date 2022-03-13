@@ -1,4 +1,4 @@
-package main
+package steamapi
 
 type App struct {
 	Appid uint32 `json:"appid"`

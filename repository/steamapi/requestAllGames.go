@@ -1,4 +1,4 @@
-package main
+package steamapi
 
 import (
 	"encoding/json"
@@ -9,8 +9,7 @@ import (
 	"sort"
 )
 
-// Sends a GET request to the Steam API, processes the JSON response and returns the games list sorted
-// lexicographically
+// sends a get request to the steam api to retrieve the whole list of games available
 func GetAppList() []App {
 	reqBody, reqErr := http.Get("https://api.steampowered.com/ISteamApps/GetAppList/v2/")
 	if reqErr != nil {

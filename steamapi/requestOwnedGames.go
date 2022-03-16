@@ -12,7 +12,7 @@ import (
 )
 
 // sends a get request to the steam api to retrieve the list of games owned by the user
-func GetOwnedGames() []OwnedGame {
+func GetOwnSteamLibrary() []Game {
 	config := config.GetConfigVariables()
 
 	timeout := time.Duration(5 * time.Second)

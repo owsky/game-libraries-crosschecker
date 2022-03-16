@@ -10,7 +10,7 @@ import (
 )
 
 // sends a get request to the steam api to retrieve the whole list of games available
-func GetAppList() []App {
+func GetWholeSteamLibrary() []Game {
 	reqBody, reqErr := http.Get("https://api.steampowered.com/ISteamApps/GetAppList/v2/")
 	if reqErr != nil {
 		log.Fatalln(reqErr)

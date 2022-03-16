@@ -3,11 +3,11 @@ package checker
 import (
 	"errors"
 
-	repo "github.com/owsky/game-libraries-crosschecker/repository"
+	"github.com/owsky/game-libraries-crosschecker/steamapi"
 )
 
 // binary search of the provided game's name through a list of games
-func contains(apps []repo.Game, name string) (repo.Game, error) {
+func contains(apps []steamapi.Game, name string) (steamapi.Game, error) {
 	left := 0
 	right := len(apps) - 1
 
@@ -23,11 +23,11 @@ func contains(apps []repo.Game, name string) (repo.Game, error) {
 		}
 	}
 	err := errors.New("app not found")
-	return repo.Game{}, err
+	return steamapi.Game{}, err
 }
 
-func Crosscheck(games []string, allSteamGames []repo.Game, ownedSteamGames []repo.Game) []repo.Game {
-	var result []repo.Game
+func Crosscheck(games []string, allSteamGames []steamapi.Game, ownedSteamGames []steamapi.Game) []steamapi.Game {
+	var result []steamapi.Game
 	for _, game := range games {
 		// checks whether the provided game is available on Steam
 		app, err := contains(allSteamGames, game)

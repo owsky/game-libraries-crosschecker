@@ -1,43 +1,45 @@
 package io
 
 import (
+	"bufio"
 	"log"
 	"os"
 	"sort"
-
-	"github.com/gocarina/gocsv"
+	"strings"
 )
 
-// removes all Steam games from the list provided by PlayNite
-func purgeSteam(games []*GameIngester) []string {
-	var gameNames []string
-	for _, game := range games {
-		if game.Source != "Steam" {
-			gameNames = append(gameNames, game.Name)
-		}
-	}
-	return gameNames
-}
-
-// this library only supports csv files formatted as standard UTF-8, files formatted in UTF-8-BOM will silently fail
-// playnite also adds quotes to the column headers which is out of spec
-// I'm planning to address this issue soon
-func Ingester() []string {
-	gamesFile, err := os.Open("games.csv")
+func Ingester() []GameIngester {
+	file, err := os.Open("games.csv")
 	if err != nil {
 		log.Fatalln(err)
 	}
-	defer gamesFile.Close()
+	defer file.Close()
 
-	games := []*GameIngester{}
+	var res []GameIngester
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		rawLine := scanner.Text()
 
-	if err := gocsv.UnmarshalFile(gamesFile, &games); err != nil {
+		if !strings.Contains(rawLine, "#TYPE") && !strings.Contains(rawLine, "\"Name\",\"Source\",\"ReleaseDate\",\"Playtime\",\"IsInstalled\"") {
+			line := strings.Split(rawLine, ",")
+			if len(line) == 5 && !strings.Contains(line[1], "Steam") {
+				res = append(res, GameIngester{
+					Name:        line[0],
+					Source:      line[1],
+					ReleaseDate: line[2],
+					PlayTime:    line[3],
+					IsInstalled: line[4],
+				})
+			}
+		}
+	}
+	if err := scanner.Err(); err != nil {
 		log.Fatalln(err)
 	}
 
-	sort.Slice(games, func(i, j int) bool {
-		return games[i].Name < games[j].Name
+	sort.Slice(res, func(i, j int) bool {
+		return res[i].Name < res[j].Name
 	})
 
-	return purgeSteam(games)
+	return res
 }

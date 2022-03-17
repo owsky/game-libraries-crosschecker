@@ -3,6 +3,7 @@ package checker
 import (
 	"errors"
 
+	"github.com/owsky/game-libraries-crosschecker/io"
 	"github.com/owsky/game-libraries-crosschecker/steamapi"
 )
 
@@ -26,14 +27,14 @@ func contains(apps []steamapi.Game, name string) (steamapi.Game, error) {
 	return steamapi.Game{}, err
 }
 
-func Crosscheck(games []string, allSteamGames []steamapi.Game, ownedSteamGames []steamapi.Game) []steamapi.Game {
+func Crosscheck(games []io.GameIngester, allSteamGames []steamapi.Game, ownedSteamGames []steamapi.Game) []steamapi.Game {
 	var result []steamapi.Game
 	for _, game := range games {
 		// checks whether the provided game is available on Steam
-		app, err := contains(allSteamGames, game)
+		app, err := contains(allSteamGames, game.Name)
 		if err == nil {
 			// checks whether the user doesn't already own the game
-			_, err := contains(ownedSteamGames, game)
+			_, err := contains(ownedSteamGames, game.Name)
 			if err != nil {
 				result = append(result, app)
 			}

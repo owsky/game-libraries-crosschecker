@@ -12,10 +12,4 @@ I'll provide a compiled version as soon as I'm satified with the code, for the t
 `go build .`<br>
 For whatever reason Windows Security doesn't really like Go executables and likes to flag them as viruses, [read this](https://go.dev/doc/faq#virus) for more information<br>
 
-The CSV file needs a small manual modification:
-
-1. remove the comment on the first line
-2. remove the quotes from the column intestation on the second line
-
-
 After placing the CSV file in the same directory of the executable you'll get a .txt file containing the output.

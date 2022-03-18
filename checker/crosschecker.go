@@ -27,7 +27,7 @@ func contains(apps []steamapi.Game, name string) (steamapi.Game, error) {
 	return steamapi.Game{}, err
 }
 
-func Crosscheck(games []io.GameIngester, allSteamGames []steamapi.Game, ownedSteamGames []steamapi.Game) []steamapi.Game {
+func actualCrosscheck(games []io.GameIngester, allSteamGames []steamapi.Game, ownedSteamGames []steamapi.Game) []steamapi.Game {
 	var result []steamapi.Game
 	for _, game := range games {
 		// checks whether the provided game is available on Steam
@@ -41,4 +41,15 @@ func Crosscheck(games []io.GameIngester, allSteamGames []steamapi.Game, ownedSte
 		}
 	}
 	return result
+}
+
+func Crosscheck() {
+	// consumes the CSV file exported by PlayNite
+	thirdPartyLibraries := io.Ingester()
+	// retrieves the whole list of games available on Steam
+	allSteamGames := steamapi.GetWholeSteamLibrary()
+	// retrieves the list of games owned by the user
+	ownedSteamGames := steamapi.GetOwnSteamLibrary()
+	// prints the output to the output.txt file
+	io.PrintOutput(actualCrosscheck(thirdPartyLibraries, allSteamGames, ownedSteamGames))
 }

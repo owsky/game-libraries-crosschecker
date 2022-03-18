@@ -8,8 +8,6 @@ import (
 )
 
 func PrintOutput(matchedGames []steamapi.Game) {
-	// os.Remove("output.txt")
-	// file, err := os.Create("output.txt")
 	file, err := os.OpenFile("output.txt", os.O_CREATE|os.O_TRUNC|os.O_RDWR, 0777)
 	if err != nil {
 		log.Fatalln(err)

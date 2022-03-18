@@ -22,7 +22,10 @@ func Ingester() []GameIngester {
 
 		if !strings.Contains(rawLine, "#TYPE") && !strings.Contains(rawLine, "\"Name\",\"Source\",\"ReleaseDate\",\"Playtime\",\"IsInstalled\"") {
 			line := strings.Split(rawLine, ",")
-			if len(line) == 5 && !strings.Contains(line[1], "Steam") {
+			for i := 0; i < len(line); i++ {
+				line[i] = strings.Trim(line[i], "\"")
+			}
+			if len(line) == 5 && line[1] != "Steam" {
 				res = append(res, GameIngester{
 					Name:        line[0],
 					Source:      line[1],

@@ -27,4 +27,4 @@ If you prefer you can skip packaging altogether and launch the development envir
 
 ## Pivot
 
-Initially I started to develop this project using Go but I quickly discovered that the GUI libraries for Go are kinda terrible so I decided to pivot and rewrite it from scratch using Electron and React. Ultimately I think it was the better choice.
+Initially I started to develop this project using Go but I quickly discovered that the GUI libraries for Go are kinda terrible so I decided to pivot and rewrite it from scratch using Electron and React. Ultimately I think it was the better choice. The Go module is still available on a separate branch as a CLI tool.

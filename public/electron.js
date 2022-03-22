@@ -1,5 +1,6 @@
 const { app, BrowserWindow } = require("electron")
 const path = require("path")
+const url = require("url")
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
@@ -16,10 +17,17 @@ function createWindow() {
     mainWindow.show()
   })
 
-  const appURL = app.isPackaged
-    ? new URL(path.join(__dirname, "index.html")).protocol("file:")
-    : "http://localhost:3000"
-  mainWindow.loadURL(appURL)
+  if (app.isPackaged) {
+    mainWindow.loadURL(
+      url.format({
+        pathname: path.join(__dirname, "index.html"),
+        protocol: "file:",
+        slashes: true,
+      })
+    )
+  } else {
+    mainWindow.loadURL("http://localhost:3000")
+  }
 
   if (!app.isPackaged) {
     mainWindow.webContents.openDevTools({ mode: "detach" })
@@ -42,4 +50,5 @@ app.on("window-all-closed", function () {
   }
 })
 
-require("../main/checker/index.js")
+require(path.join(__dirname, "checker"))
+// require()

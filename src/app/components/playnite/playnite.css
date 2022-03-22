@@ -1,0 +1,9 @@
+#playnite {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#playnite-logo {
+  width: 200px;
+}

@@ -1,0 +1,35 @@
+#steam {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+
+#steam-logo {
+  padding-bottom: 15px;
+}
+
+#random-logo {
+  width: 250px;
+  filter: brightness(0) saturate(100%) invert(33%) sepia(44%) saturate(6998%)
+    hue-rotate(2deg) brightness(101%) contrast(106%);
+}
+
+#wrapper {
+  list-style-type: none;
+}
+
+.steamrow {
+  display: flex;
+  justify-content: flex-end;
+  gap: 25px;
+  margin-bottom: 15px;
+}
+
+.steamrow label {
+  flex: 1 70px;
+}
+
+#steam-userid {
+  flex: 2;
+}

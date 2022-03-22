@@ -42,4 +42,4 @@ app.on("window-all-closed", function () {
   }
 })
 
-require("./checker/index.js")
+require("../main/checker/index.js")

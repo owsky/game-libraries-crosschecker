@@ -6,15 +6,23 @@ As a data source I'm using PlayNite and its export to CSV feature so that I can 
 
 ## Usage
 
-I'll provide a compiled version as soon as I'm satified with the code, for the time being you can just build it yourself by launching:<br>
+I'll provide a compiled version as soon as I'm satified with the code, for the time being you can just build it yourself:
+
+
+First you need to have [Node.js](https://nodejs.org/en/) installed
+
+
+Then after moving to the project directory with your terminal you need to launch the following commands:
 
 1. `npm install`
-2. `npm run electron:package:win`<br>
-   `npm run electron:package:mac`<br>
-   `npm run electron:package:linux`<br>
+2. Pick whichever platform you want to target:
+      - `npm run electron:package:win`<br>
+      - `npm run electron:package:mac`<br>
+      - `npm run electron:package:linux`<br>
 
-Pick whichever platform you want to target. The packaged app will be located in /dist/.
-If you prefer your can skip packaging altogether and launch the development environment with:
+The packaged app will be located in \<project-dir\>/dist/.
+If you prefer you can skip packaging altogether and launch the development environment with:
+
 `npm start`
 
 ## Pivot

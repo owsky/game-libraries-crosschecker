@@ -4,8 +4,8 @@ const api = {
   sendInput: args => {
     ipcRenderer.send("input", args)
   },
-  listenForOutput: callback => {
-    ipcRenderer.addListener("output", callback)
+  listenForError: callback => {
+    ipcRenderer.addListener("error", callback)
   },
 }
 

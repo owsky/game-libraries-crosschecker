@@ -1,6 +1,7 @@
 const axios = require("axios").default
+const returnError = require("../ipc").returnError
 
-async function requestAllGames() {
+async function requestAllGames(event) {
   try {
     const res = await axios.get(
       "https://api.steampowered.com/ISteamApps/GetAppList/v2/"
@@ -9,7 +10,11 @@ async function requestAllGames() {
     apps.sort((first, second) => first.name.localeCompare(second.name))
     return apps
   } catch (error) {
-    console.log(error)
+    console.error(error)
+    returnError(
+      event,
+      `Failed to request the entire Steam library: \n${error.toString()}`
+    )
   }
 }
 

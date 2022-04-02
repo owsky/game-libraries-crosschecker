@@ -1,4 +1,3 @@
-// import steamVector from "./img/steam.svg"
 import Logo18 from "./img/Logo18.svg"
 import "./steam.css"
 
@@ -15,9 +14,7 @@ export function Steam() {
           <input type="text" id="steam-api-key" />
         </li>
       </ul>
-      {/* Temporary logo until I hear back from Valve */}
-      <img src={Logo18} alt="random logo" id="random-logo" />{" "}
-      {/* <img src={steamVector} alt="steam logo" id="steam-logo" /> */}
+      <img src={Logo18} alt="random logo" id="random-logo" />
     </section>
   )
 }

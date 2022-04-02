@@ -1,7 +1,7 @@
 const retrieveInput = require("./retrieveInput")
-const sendResults = require("./sendResults")
+const returnError = require("./returnError")
 
 module.exports = {
   retrieveInput: retrieveInput,
-  sendResults: sendResults,
+  returnError: returnError,
 }

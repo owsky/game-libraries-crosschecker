@@ -5,15 +5,15 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 	"sort"
 	"time"
-
-	"github.com/owsky/game-libraries-crosschecker/config"
 )
 
 // sends a get request to the steam api to retrieve the list of games owned by the user
 func GetOwnSteamLibrary() []Game {
-	config := config.GetConfigVariables()
+	steamUID := os.Getenv("uid")
+	steamAPIKey := os.Getenv("api")
 
 	timeout := time.Duration(5 * time.Second)
 	client := http.Client{
@@ -21,16 +21,15 @@ func GetOwnSteamLibrary() []Game {
 	}
 
 	request, err := http.NewRequest("GET", "https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/", nil)
-	q := request.URL.Query()
-	q.Add("key", config.ApiKey)
-	q.Add("steamid", config.SteamID)
-	q.Add("include_appinfo", "true")
-	q.Add("include_played_free_games", "true")
-	request.URL.RawQuery = q.Encode()
-
 	if err != nil {
 		log.Fatalln(err)
 	}
+	q := request.URL.Query()
+	q.Add("key", steamAPIKey)
+	q.Add("steamid", steamUID)
+	q.Add("include_appinfo", "true")
+	q.Add("include_played_free_games", "true")
+	request.URL.RawQuery = q.Encode()
 
 	resp, err := client.Do(request)
 	if err != nil {
@@ -47,7 +46,7 @@ func GetOwnSteamLibrary() []Game {
 	var data OwnedGamesResponse
 	unmarshallErr := json.Unmarshal(body, &data)
 	if unmarshallErr != nil {
-		log.Fatalln(err)
+		log.Fatalln("There was an error retrieving your Steam library. Check input data")
 	}
 
 	sort.Slice(data.Response.Games, func(i, j int) bool {

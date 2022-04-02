@@ -9,7 +9,8 @@ import (
 )
 
 func Ingester() []GameIngester {
-	file, err := os.Open("games.csv")
+	csvFilePath := os.Getenv("csv")
+	file, err := os.Open(csvFilePath)
 	if err != nil {
 		log.Fatalln(err)
 	}

@@ -3,3 +3,6 @@
 *.csv
 *.txt
 *.exe
+node_modules
+build
+dist

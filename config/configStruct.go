@@ -1,6 +1,7 @@
 package config
 
 type Config struct {
-	ApiKey  string `json:"apiKey"`
-	SteamID string `json:"steamID"`
+	CsvFilePath string `json:"csvFilePath"`
+	SteamUID    string `json:"steamUID"`
+	SteamAPIKey string `json:"steamAPIKey"`
 }

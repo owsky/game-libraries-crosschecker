@@ -8,14 +8,14 @@ import (
 )
 
 func PrintOutput(matchedGames []steamapi.Game) {
-	file, err := os.OpenFile("output.txt", os.O_CREATE|os.O_TRUNC|os.O_RDWR, 0777)
-	if err != nil {
+	if file, err := os.OpenFile("output.txt", os.O_CREATE|os.O_TRUNC|os.O_RDWR, 0777); err == nil {
+		defer file.Close()
+		// writes to the file each entry of the matched games
+		for _, game := range matchedGames {
+			file.WriteString(game.Name + "\n")
+		}
+		log.Println("Written output to output.txt")
+	} else {
 		log.Fatalln(err)
 	}
-
-	// writes to the file each entry of the matched games
-	for _, game := range matchedGames {
-		file.WriteString(game.Name + "\n")
-	}
-	defer file.Close()
 }

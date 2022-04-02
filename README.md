@@ -18,7 +18,7 @@ Then after moving to the project directory with your terminal you need to launch
 2. Pick whichever platform you want to target:
       - `npm run electron:package:win`<br>
       - `npm run electron:package:mac`<br>
-      - `npm run electron:package:linux`<br> CURRENTLY LINUX BUILD IS BROKEN FOR ELECTRON-BUILDER
+      - `npm run electron:package:linux` CURRENTLY LINUX BUILD IS BROKEN FOR ELECTRON-BUILDER
 
 The packaged app will be located in /<project-dir>/dist/.
 If you prefer you can skip packaging altogether and launch the development environment with:

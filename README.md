@@ -6,7 +6,7 @@ As a data source I'm using PlayNite and its export to CSV feature so that I can 
 
 ## Usage
 
-I'll provide a compiled version as soon as I'm satified with the code, for the time being you can just build it yourself:
+If you want to build it yourself:
 
 
 First you need to have [Node.js](https://nodejs.org/en/) installed
@@ -18,9 +18,9 @@ Then after moving to the project directory with your terminal you need to launch
 2. Pick whichever platform you want to target:
       - `npm run electron:package:win`<br>
       - `npm run electron:package:mac`<br>
-      - `npm run electron:package:linux`<br>
+      - `npm run electron:package:linux`<br> CURRENTLY LINUX BUILD IS BROKEN FOR ELECTRON-BUILDER
 
-The packaged app will be located in \<project-dir\>/dist/.
+The packaged app will be located in /<project-dir>/dist/.
 If you prefer you can skip packaging altogether and launch the development environment with:
 
 `npm start`
